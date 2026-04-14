@@ -8,6 +8,7 @@ const CosmosProject = lazy(() => import('./pages/CosmosProject'))
 const SelectedProjects = lazy(() => import('./pages/SelectedProjects'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
+const CosmicLab = lazy(() => import('./pages/CosmicLab'))
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="cosmos-project" element={<CosmosProject />} />
             <Route path="selected-projects" element={<SelectedProjects />} />
+            <Route path="cosmic-lab" element={<CosmicLab />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
           </Route>
