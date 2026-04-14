@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark text-white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: none !important;
+  }
+}
+
+/* Ensure interactive elements also hide the cursor */
+a, button, [role="button"], input, select, textarea {
+  cursor: none !important;
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/[0.02] backdrop-blur-[30px] border border-white/5;
+  }
+  
+  .glass-card {
+    @apply bg-white/[0.015] backdrop-blur-[20px] border border-white/5 transition-all duration-700 hover:border-white/10;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px var(--tw-shadow-color);
+  }
+
+  .section-label {
+    @apply font-bold uppercase tracking-[0.5em] text-[0.65rem] mb-2 block;
+  }
+
+  .opacity-fade {
+    -webkit-mask-image: linear-gradient(to right, black 40%, transparent 95%);
+    mask-image: linear-gradient(to right, black 40%, transparent 95%);
+  }
+}
