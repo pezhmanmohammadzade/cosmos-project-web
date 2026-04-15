@@ -1,49 +1,45 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { raDecToVector3, bvToRGB } from '../../utils/physics-utils';
+import starsData from '../../data/stars.json';
+import { sharedMaterials } from '../../utils/shared-resources';
 
-export default function StarfieldLayer({ count = 3000, radius = 50, depth = 50, speed = 0.05 }) {
+export default function StarfieldLayer({ radius = 100, speed = 0.05 }) {
   const points = useRef();
 
   const particles = useMemo(() => {
+    const features = starsData.features;
+    const count = features.length;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const sizes = new Float32Array(count);
-    
-    const colorChoices = [
-      new THREE.Color('#ffffff'),
-      new THREE.Color('#00D2FF'),
-      new THREE.Color('#BD00FF'),
-      new THREE.Color('#00FFD1'),
-    ];
 
-    for (let i = 0; i < count; i++) {
+    features.forEach((feature, i) => {
       const i3 = i * 3;
-      
-      // Spherical distribution with variation
-      const r = radius * (0.1 + Math.random() * 0.9);
-      const theta = 2 * Math.PI * Math.random();
-      const phi = Math.acos(2 * Math.random() - 1);
+      const { mag, bv } = feature.properties;
+      const [ra, dec] = feature.geometry.coordinates;
 
-      positions[i3] = r * Math.sin(phi) * Math.cos(theta);
-      positions[i3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      positions[i3 + 2] = r * Math.cos(phi);
+      const pos = raDecToVector3(ra, dec, radius);
+      positions[i3] = pos.x;
+      positions[i3 + 1] = pos.y;
+      positions[i3 + 2] = pos.z;
 
-      const color = colorChoices[Math.floor(Math.random() * colorChoices.length)];
+      const color = bvToRGB(parseFloat(bv) || 0);
       colors[i3] = color.r;
       colors[i3 + 1] = color.g;
       colors[i3 + 2] = color.b;
 
-      sizes[i] = Math.random() * 0.15 + 0.05;
-    }
+      sizes[i] = Math.max(0.05, (6 - mag) * 0.05);
+    });
 
     return { positions, colors, sizes };
-  }, [count, radius]);
+  }, [radius]);
 
   useFrame((state) => {
     if (points.current) {
       points.current.rotation.y += state.clock.getDelta() * speed;
-      points.current.rotation.z += state.clock.getDelta() * (speed * 0.5);
+      points.current.rotation.z += state.clock.getDelta() * (speed * 0.3);
     }
   });
 
@@ -62,15 +58,15 @@ export default function StarfieldLayer({ count = 3000, radius = 50, depth = 50, 
           array={particles.colors}
           itemSize={3}
         />
+        <bufferAttribute
+          attach="attributes-size"
+          count={particles.sizes.length}
+          array={particles.sizes}
+          itemSize={1}
+        />
       </bufferGeometry>
-      <pointsMaterial
-        size={0.12}
-        vertexColors
-        transparent
-        opacity={0.8}
-        sizeAttenuation={true}
-        blending={THREE.AdditiveBlending}
-      />
+      <primitive object={sharedMaterials.starPoints} attach="material" />
     </points>
   );
 }
+

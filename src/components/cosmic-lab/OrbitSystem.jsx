@@ -1,84 +1,116 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Float, Sphere, MeshDistortMaterial } from '@react-three/drei';
+import { Float, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+import { keplerToCartesian, PLANET_DATA } from '../../utils/physics-utils';
+import { sharedGeometries } from '../../utils/shared-resources';
 
-function Orbiter({ radius, speed, size, color, offset = 0, intensity = 1 }) {
+function Orbiter({ planet, intensity = 1 }) {
   const meshRef = useRef();
-  const trailRef = useRef();
+  const { a, e, i, w, O, L, size, color, period, hasRings } = planet;
+  
+  // Logarithmic Distance Scaling: ensures Neptune isn't 30x further than Earth visually
+  const getScaledA = (semiMajorAxis) => {
+    return 8 + 12 * Math.log10(semiMajorAxis + 0.1);
+  };
+
+  const scaledA = useMemo(() => getScaledA(a), [a]);
+  const SIZE_SCALE = 0.6;
 
   useFrame((state) => {
-    const t = state.clock.getElapsedTime() * speed * intensity + offset;
-    const x = Math.cos(t) * radius;
-    const z = Math.sin(t) * radius;
-    const y = Math.sin(t * 0.5) * (radius * 0.2);
+    const time = state.clock.getElapsedTime() * 0.1;
+    const M = (L * (Math.PI / 180)) + (time / period) * 2 * Math.PI;
     
-    meshRef.current.position.set(x, y, z);
+    const pos = keplerToCartesian(scaledA, e, i, w, O, M);
+    if (meshRef.current) {
+      meshRef.current.position.set(pos.x, pos.y, pos.z);
+    }
   });
 
-  const curve = useMemo(() => {
+  const curvePoints = useMemo(() => {
     const points = [];
-    for (let i = 0; i <= 64; i++) {
-      const angle = (i / 64) * Math.PI * 2;
-      points.push(new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle * 0.5) * (radius * 0.2), Math.sin(angle) * radius));
+    const segments = 128; // Keep at 128 for smooth orbit lines
+    for (let j = 0; j <= segments; j++) {
+      const M = (j / segments) * 2 * Math.PI;
+      const pos = keplerToCartesian(scaledA, e, i, w, O, M);
+      points.push(pos);
     }
-    return new THREE.CatmullRomCurve3(points, true);
-  }, [radius]);
+    return points;
+  }, [scaledA, e, i, w, O]);
+
+  // LOD: Select geometry based on planet size
+  const planetGeometry = useMemo(() => {
+    if (size < 0.15) return sharedGeometries.lowPolySphere;
+    return sharedGeometries.mediumPolySphere;
+  }, [size]);
 
   return (
     <group>
-      {/* Orbit Line */}
-      <line rotation={[0, 0, 0]}>
-        <bufferGeometry attach="geometry" setFromPoints={curve.getPoints(100)} />
+      {/* Orbit Path - Already efficient with line + bufferGeometry */}
+      <line>
+        <bufferGeometry attach="geometry" setFromPoints={curvePoints} />
         <lineBasicMaterial attach="material" color={color} transparent opacity={0.2 * intensity} />
       </line>
 
-      {/* Orbiting Body */}
-      <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-        <mesh ref={meshRef}>
-          <sphereGeometry args={[size, 32, 32]} />
+      {/* Planet Body */}
+      <group ref={meshRef}>
+        <mesh scale={size * SIZE_SCALE}>
+          <primitive object={planetGeometry} attach="geometry" />
           <meshStandardMaterial 
             color={color} 
             emissive={color} 
-            emissiveIntensity={2 * intensity} 
+            emissiveIntensity={0.6 * intensity} 
             toneMapped={false}
           />
-          <pointLight color={color} intensity={1 * intensity} distance={5} />
         </mesh>
-      </Float>
+        
+        {/* Saturn's Rings (or other gas giants) */}
+        {hasRings && (
+          <mesh rotation={[Math.PI / 2.5, 0, 0]} scale={size * 1.2}>
+            <primitive object={sharedGeometries.unitRing} attach="geometry" />
+            <meshStandardMaterial 
+              color={color} 
+              transparent 
+              opacity={0.4 * intensity} 
+              side={THREE.DoubleSide} 
+              toneMapped={false}
+            />
+          </mesh>
+        )}
+
+        <pointLight color={color} intensity={1 * intensity} distance={8} decay={2} />
+      </group>
     </group>
   );
 }
 
 export default function OrbitSystem({ intensity = 1 }) {
-  const orbiters = [
-    { radius: 6, speed: 0.5, size: 0.4, color: '#00D2FF', offset: 0 },
-    { radius: 9, speed: 0.3, size: 0.6, color: '#BD00FF', offset: Math.PI / 2 },
-    { radius: 12, speed: 0.2, size: 0.8, color: '#00FFD1', offset: Math.PI },
-  ];
+  if (intensity <= 0) return null;
 
   return (
     <group>
-      {/* Central Star */}
-      <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
-        <Sphere args={[2, 64, 64]}>
+      {/* The Sun (Central Star) */}
+      <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.1}>
+        <mesh scale={2.5}>
+          <primitive object={sharedGeometries.highPolySphere} attach="geometry" />
           <MeshDistortMaterial
-            color="#ffffff"
-            emissive="#00D2FF"
-            emissiveIntensity={1.5 * intensity}
-            speed={2}
-            distort={0.4}
+            color="#FFFFFF"
+            emissive="#FFD700"
+            emissiveIntensity={2.5 * intensity}
+            speed={2.5}
+            distort={0.35}
             radius={1}
             toneMapped={false}
           />
-        </Sphere>
-        <pointLight intensity={5 * intensity} distance={20} color="#00D2FF" />
+        </mesh>
+        <pointLight intensity={10 * intensity} distance={60} color="#FFD700" decay={1.5} />
       </Float>
 
-      {/* Orbiters */}
-      {orbiters.map((props, i) => (
-        <Orbiter key={i} {...props} intensity={intensity} />
+      {/* Full Solar System rendering */}
+      {PLANET_DATA.map((planet) => (
+        <Orbiter key={planet.name} planet={planet} intensity={intensity} />
       ))}
     </group>
   );
 }
+
