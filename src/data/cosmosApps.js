@@ -30,7 +30,7 @@ export const cosmosApps = [
   },
   {
     id: 'cosmoquest',
-    name: 'CosmoQuest',
+    name: 'CosmoQuest AI',
     role: 'The Scientific Layer',
     tagline: 'Analytical Explorer',
     appIcon: '/assets/icons/cosmoquest.png',
@@ -55,7 +55,7 @@ export const cosmosApps = [
       secondaryValue: '#00D2FF', // Blue
     },
     visual: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000', // Data visualization earth
-    downloadUrl: null
+    downloadUrl: 'https://apps.apple.com/it/app/cosmoquest-ai/id6762165168?l=en-GB'
   },
   {
     id: 'cosmogen',
@@ -84,6 +84,7 @@ export const cosmosApps = [
       secondaryValue: '#180B3A', // Indigo
     },
     visual: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?auto=format&fit=crop&q=80&w=1000', // Aurora style deep space
-    downloadUrl: null
+    downloadUrl: null,
+    testFlightUrl: 'https://testflight.apple.com/join/J1vTeU9Q'
   }
 ];

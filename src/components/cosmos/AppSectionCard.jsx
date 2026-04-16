@@ -57,6 +57,7 @@ export default function AppSectionCard({ app, index }) {
     gsap.to(cardRef.current.querySelector('.content-layer'), {
       x: xPct * 25,
       y: yPct * 25,
+      opacity: 1,
       duration: 1.5,
       ease: "power3.out"
     });
@@ -82,11 +83,14 @@ export default function AppSectionCard({ app, index }) {
       ease: "elastic.out(1, 0.5)",
     });
 
-    gsap.to([
-      cardRef.current.querySelector('.content-layer'),
-      cardRef.current.querySelector('.light-follow')
-    ], {
-      x: 0, y: 0, opacity: 0,
+    gsap.to(cardRef.current.querySelector('.content-layer'), {
+      x: 0, y: 0,
+      duration: 1.5,
+      ease: "power3.inOut"
+    });
+
+    gsap.to(cardRef.current.querySelector('.light-follow'), {
+      opacity: 0,
       duration: 1.5,
       ease: "power3.inOut"
     });
@@ -148,6 +152,54 @@ export default function AppSectionCard({ app, index }) {
               </div>
             ))}
           </div>
+
+          <div className="card-element flex flex-wrap gap-4">
+            {app.testFlightUrl && (
+              <a 
+                href={app.testFlightUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 px-8 py-4 rounded-[1.25rem] bg-white/10 border border-white/20 backdrop-blur-xl group/btn transition-all duration-500 hover:bg-white/20 hover:scale-105 active:scale-95 shadow-[0_15px_45px_rgba(0,0,0,0.5)]"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m3.5 13 1.5-1.5" />
+                  <path d="m19 6.5 1.5-1.5" />
+                  <path d="M10.23 13H17.77" />
+                  <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                  <path d="M14.5 19.5 12 17l-4.5 4.5" />
+                  <path d="m6 10 1.5-1.5L9 10" />
+                  <path d="M11.5 4.5 9 7l4.5 4.5" />
+                </svg>
+                <div className="flex flex-col items-start leading-none text-white">
+                  <span className="text-[10px] uppercase tracking-wider opacity-60">Join the Beta</span>
+                  <span className="text-base font-bold tracking-tight">TestFlight</span>
+                </div>
+              </a>
+            )}
+
+            {app.downloadUrl ? (
+              <a 
+                href={app.downloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 px-8 py-4 rounded-[1.25rem] bg-white/10 border border-white/20 backdrop-blur-xl group/btn transition-all duration-500 hover:bg-white/20 hover:scale-105 active:scale-95 shadow-[0_15px_45px_rgba(0,0,0,0.5)]"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-1.99.77-3.27.82-1.31.05-2.31-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.36 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                </svg>
+                <div className="flex flex-col items-start leading-none text-white">
+                  <span className="text-[10px] uppercase tracking-wider opacity-60">Download on the</span>
+                  <span className="text-base font-bold tracking-tight">App Store</span>
+                </div>
+              </a>
+            ) : (
+              <div className="flex items-center px-8 py-4 rounded-[1.25rem] bg-white/5 border border-white/10 backdrop-blur-md opacity-60">
+                <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-white/50">
+                  Coming Soon to App Store
+                </span>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Visual Side (Interactive 3D Portal with Optical Physics) */}
@@ -157,15 +209,15 @@ export default function AppSectionCard({ app, index }) {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             className={cn(
-              "w-full h-full rounded-[3rem] overflow-hidden p-1 border bg-black/50 backdrop-blur-xl transition-shadow duration-700 relative group/card",
+              "w-full h-full rounded-[3rem] p-1 border bg-black/50 backdrop-blur-xl transition-shadow duration-700 relative group/card",
               app.theme.border,
               `hover:shadow-[0_0_120px_${app.theme.primaryValue}50]`
             )}
             style={{ transformStyle: 'preserve-3d' }}
           >
             {/* The Conic Neon Chase Border */}
-            <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-1000 z-0">
-               <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_20%,#fff_25%,transparent_30%)] animate-spin-slow opacity-20"></div>
+            <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-1000 z-0 pointer-events-none">
+               <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_20%,#fff_25%,transparent_30%)] animate-spin-slow opacity-20 pointer-events-none"></div>
             </div>
 
             {/* Kinetic Light Follow Head */}
@@ -175,8 +227,8 @@ export default function AppSectionCard({ app, index }) {
             <div className="absolute top-8 left-8 z-50 font-mono text-[6px] text-white/20 tracking-[0.5em] uppercase">SYSTEM_STABLE</div>
             <div className="absolute bottom-8 right-8 z-50 font-mono text-[6px] text-white/20 tracking-[0.5em] uppercase">PORTAL_v2.0</div>
 
-            <div className="relative w-full h-full rounded-[2.8rem] overflow-hidden bg-black/40">
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
+            <div className="relative w-full h-full rounded-[2.8rem] bg-black/40" style={{ transformStyle: 'preserve-3d' }}>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 pointer-events-none" />
               
               {/* 3D Celestial Core Portal with Branded Icon */}
               <div className="visual-layer w-full h-full scale-110" style={{ transformStyle: 'preserve-3d', transform: 'translateZ(-80px)' }}>
@@ -188,33 +240,10 @@ export default function AppSectionCard({ app, index }) {
                 />
               </div>
               
-              <div className="content-layer absolute bottom-12 left-12 z-20 flex flex-col gap-4" style={{ transformStyle: 'preserve-3d', transform: 'translateZ(120px)' }}>
+              <div className="content-layer absolute bottom-12 left-12 z-50 flex flex-col gap-4 pointer-events-auto" style={{ transformStyle: 'preserve-3d', transform: 'translateZ(120px)' }}>
                 <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] px-5 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md self-start">
                   {app.tagline}
                 </span>
-
-                {app.downloadUrl ? (
-                  <a 
-                    href={app.downloadUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-xl group/btn transition-all duration-500 hover:bg-white/20 hover:scale-105 active:scale-95 shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-1.99.77-3.27.82-1.31.05-2.31-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.36 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                    </svg>
-                    <div className="flex flex-col items-start leading-none text-white">
-                      <span className="text-[8px] uppercase tracking-wider opacity-60">Download on the</span>
-                      <span className="text-sm font-bold tracking-tight">App Store</span>
-                    </div>
-                  </a>
-                ) : (
-                  <div className="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md opacity-60">
-                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/50">
-                      Coming Soon
-                    </span>
-                  </div>
-                )}
               </div>
             </div>
           </div>

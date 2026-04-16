@@ -1,7 +1,7 @@
 export const secondaryProjects = [
   {
     id: 'spark',
-    name: 'Spark',
+    name: 'Spark: AI Coach',
     category: 'AI Cognitive System',
     appIcon: '/assets/icons/spark.png',
     description: 'An AI coach that challenges thinking, featuring an idea-to-execution workflow with timeline evolution, mastery streaks, and deep cognitive leveling.',
@@ -17,7 +17,7 @@ export const secondaryProjects = [
       'Cognitive scaling & mastery streaks'
     ],
     visual: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000',
-    downloadUrl: null
+    downloadUrl: 'https://apps.apple.com/it/app/spark-ai-coach/id6761627015?l=en-GB'
   },
   {
     id: 'lucid',
