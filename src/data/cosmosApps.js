@@ -59,7 +59,7 @@ export const cosmosApps = [
   },
   {
     id: 'cosmogen',
-    name: 'Cosmic Genesis',
+    name: 'CosmoGen',
     role: 'The Simulation Layer',
     tagline: 'Strategic Evolution',
     appIcon: '/assets/icons/cosmogen.png',
@@ -84,7 +84,6 @@ export const cosmosApps = [
       secondaryValue: '#180B3A', // Indigo
     },
     visual: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?auto=format&fit=crop&q=80&w=1000', // Aurora style deep space
-    downloadUrl: null,
-    testFlightUrl: 'https://testflight.apple.com/join/J1vTeU9Q'
+    downloadUrl: 'https://apps.apple.com/it/app/cosmogen/id6761415082?l=en-GB'
   }
 ];

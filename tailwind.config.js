@@ -19,7 +19,9 @@ export default {
           gold: '#FFD700',
           red: '#FF3D3D',
           aurora: '#00FFD1',
-          cyan: '#00FFFF'
+          cyan: '#00FFFF',
+          rose: '#F4E4E4',
+          paper: '#FDFCF8'
         }
       },
       fontFamily: {

@@ -178,15 +178,17 @@ export default function AppSectionCard({ app, index }) {
                 </a>
                 
                 {/* Visible QR Code beside the button */}
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-28 h-28 bg-white p-2.5 rounded-2xl shadow-[0_15px_45px_rgba(0,0,0,0.5)] border border-white/10 transition-transform duration-500 hover:scale-105">
-                    <img 
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(app.testFlightUrl)}`} 
-                      alt="Scan to Join Beta" 
-                      className="w-full h-full object-cover mix-blend-multiply opacity-90"
-                    />
+                {!app.hideQR && (
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-28 h-28 bg-white p-2.5 rounded-2xl shadow-[0_15px_45px_rgba(0,0,0,0.5)] border border-white/10 transition-transform duration-500 hover:scale-105">
+                      <img 
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(app.testFlightUrl)}`} 
+                        alt="Scan to Join Beta" 
+                        className="w-full h-full object-cover mix-blend-multiply opacity-90"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
 
@@ -208,15 +210,17 @@ export default function AppSectionCard({ app, index }) {
                 </a>
 
                 {/* Visible QR Code beside the button */}
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-28 h-28 bg-white p-2.5 rounded-2xl shadow-[0_15px_45px_rgba(0,0,0,0.5)] border border-white/10 transition-transform duration-500 hover:scale-105">
-                    <img 
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(app.downloadUrl)}`} 
-                      alt="Scan to Download" 
-                      className="w-full h-full object-cover mix-blend-multiply opacity-90"
-                    />
+                {!app.hideQR && (
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-28 h-28 bg-white p-2.5 rounded-2xl shadow-[0_15px_45px_rgba(0,0,0,0.5)] border border-white/10 transition-transform duration-500 hover:scale-105">
+                      <img 
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(app.downloadUrl)}`} 
+                        alt="Scan to Download" 
+                        className="w-full h-full object-cover mix-blend-multiply opacity-90"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             ) : (
               <div className="flex items-center px-8 py-4 h-[4.5rem] rounded-[1.25rem] bg-white/5 border border-white/10 backdrop-blur-md opacity-60">

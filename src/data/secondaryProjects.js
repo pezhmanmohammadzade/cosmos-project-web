@@ -38,5 +38,25 @@ export const secondaryProjects = [
     ],
     visual: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&q=80&w=1000',
     downloadUrl: 'https://apps.apple.com/it/app/lucid-the-ai-focus-mirror/id6761378954?l=en-GB'
+  },
+  {
+    id: 'solacea',
+    name: 'Solacea',
+    category: 'Grief Support & Healing',
+    appIcon: '/assets/icons/solacea.png',
+    description: 'A calm, private companion designed to support you through grief. Hand-drawn aesthetics meet mindful reflection in a space that simply holds room for your thoughts and memories.',
+    tone: 'Gentle, Human, Private',
+    theme: {
+      accent: 'text-cosmo-rose',
+      border: 'border-cosmo-rose/30',
+      bgGlow: 'bg-cosmo-rose/5',
+      primaryValue: '#FBF8F3', // Cream paper color from new icon
+    },
+    features: [
+      'Memory Echo poetic reflections',
+      'Luminous Candle ritual'
+    ],
+    visual: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&q=80&w=1000',
+    downloadUrl: 'https://apps.apple.com/it/app/solacea/id6763568851?l=en-GB'
   }
 ];

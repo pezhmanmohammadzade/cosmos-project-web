@@ -33,7 +33,7 @@ function BrandedCore({ iconUrl, xPct = 0, yPct = 0 }) {
   return (
     <group>
       {/* The main project asset plane */}
-      <Plane ref={meshRef} args={[4.5, 4.5]}>
+      <Plane ref={meshRef} args={[5.8, 5.8]}>
         <meshBasicMaterial 
           map={texture} 
           transparent 
@@ -42,7 +42,7 @@ function BrandedCore({ iconUrl, xPct = 0, yPct = 0 }) {
         />
         
         {/* Subtle holographic glow backing */}
-        <Plane ref={glowRef} args={[4.6, 4.6]}>
+        <Plane ref={glowRef} args={[5.9, 5.9]}>
           <meshBasicMaterial 
             map={texture} 
             transparent 
