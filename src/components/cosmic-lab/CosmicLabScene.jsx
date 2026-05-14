@@ -38,7 +38,7 @@ export default function CosmicLabScene({ mode = LAB_MODES.EXPLORE }) {
         shadows
         gl={{ antialias: false, alpha: true, stencil: false, depth: true }}
         camera={{ position: [0, 0, 20], fov: 45 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
       >
         <color attach="background" args={['#010103']} />
         

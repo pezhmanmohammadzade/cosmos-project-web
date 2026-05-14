@@ -110,13 +110,17 @@ function CinematicBlackHole() {
       // Slow gravitational precession
       groupRef.current.rotation.y = time * 0.05;
       
-      // Adaptive tilt
-      gsap.to(groupRef.current.rotation, {
-        x: (mouse.y * 0.15) + (time * 0.02),
-        z: (mouse.x * -0.15),
-        duration: 2.5,
-        ease: 'power2.out'
-      });
+      // Adaptive tilt using lerp instead of creating new gsap tweens every frame
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(
+        groupRef.current.rotation.x,
+        (mouse.y * 0.15) + (time * 0.02),
+        0.05
+      );
+      groupRef.current.rotation.z = THREE.MathUtils.lerp(
+        groupRef.current.rotation.z,
+        (mouse.x * -0.15),
+        0.05
+      );
     }
 
     if (diskRef.current) {
@@ -176,7 +180,7 @@ export default function CentralOrbScene() {
       <Canvas 
         camera={{ position: [0, 0, 10], fov: 45 }}
         gl={{ powerPreference: 'high-performance', antialias: true, alpha: true }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
       >
         <ambientLight intensity={0.1} />
 

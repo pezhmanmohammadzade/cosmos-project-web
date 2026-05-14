@@ -86,7 +86,7 @@ function NebulaLayer({ color, scale, speed, position, opacity }) {
 
   return (
     <mesh ref={meshRef} position={position} scale={scale}>
-      <primitive object={sharedGeometries.highPolySphere} attach="geometry" />
+      <primitive object={sharedGeometries.mediumPolySphere} attach="geometry" />
       <shaderMaterial
         ref={materialRef}
         fragmentShader={NebulaShader.fragmentShader}
