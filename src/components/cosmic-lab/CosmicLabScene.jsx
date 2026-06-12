@@ -29,7 +29,7 @@ function CameraHandler({ distance }) {
   return null;
 }
 
-export default function CosmicLabScene({ mode = LAB_MODES.EXPLORE }) {
+export default function CosmicLabScene({ mode = LAB_MODES.EXPLORE, isInteractive = false }) {
   const config = useMemo(() => modeConfigs[mode], [mode]);
 
   return (
@@ -39,6 +39,7 @@ export default function CosmicLabScene({ mode = LAB_MODES.EXPLORE }) {
         gl={{ antialias: false, alpha: true, stencil: false, depth: true }}
         camera={{ position: [0, 0, 20], fov: 45 }}
         dpr={[1, 1.5]}
+        style={{ touchAction: isInteractive ? 'none' : 'pan-y' }}
       >
         <color attach="background" args={['#010103']} />
         
@@ -98,9 +99,10 @@ export default function CosmicLabScene({ mode = LAB_MODES.EXPLORE }) {
           </EffectComposer>
           
           <OrbitControls 
-            enableZoom={false} 
+            enableZoom={isInteractive} 
             enablePan={false} 
-            autoRotate 
+            enableRotate={isInteractive}
+            autoRotate={!isInteractive} 
             autoRotateSpeed={mode === LAB_MODES.EXPLORE ? 0.5 : 0.05}
             makeDefault
           />

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { modeConfigs, LAB_MODES } from '../../data/cosmicLabModes';
 import LabModeSwitcher from './LabModeSwitcher';
 
-export default function CosmicLabHUD({ currentMode, onModeChange }) {
+export default function CosmicLabHUD({ currentMode, onModeChange, isInteractive, onInteractiveToggle }) {
   const config = useMemo(() => modeConfigs[currentMode] || {}, [currentMode]);
 
   return (
@@ -21,7 +21,12 @@ export default function CosmicLabHUD({ currentMode, onModeChange }) {
         <div className="flex flex-col gap-1">
           <span className="text-[7px] text-white/20 tracking-[0.6em] font-black">SYSTEM_INTERFACE</span>
           <div className="h-px w-8 bg-white/10" />
-          <span className="text-[9px] text-white/60 tracking-[0.2em]">DRAG_TO_ROTATE</span>
+          <button 
+            onClick={onInteractiveToggle}
+            className={`text-[9px] tracking-[0.2em] transition-colors duration-300 text-left hover:text-white ${isInteractive ? 'text-cosmo-cyan' : 'text-white/60'}`}
+          >
+            {isInteractive ? '> INTERACTIVE_MODE: ON' : '> ENABLE_INTERACTION'}
+          </button>
         </div>
       </div>
 

@@ -31,9 +31,9 @@ export default function CosmosOverview() {
           The Ecosystem
         </span>
         <h2 className="overview-element text-3xl md:text-5xl font-outfit font-bold mb-10 leading-snug">
-          Three Layers of <br/> Cosmic Engagement
+          Four Layers of <br/> Cosmic Engagement
         </h2>
-        <div className="overview-element grid md:grid-cols-3 gap-8 mt-16 text-left">
+        <div className="overview-element grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 text-left">
           <div className="p-8 glass-panel rounded-3xl hover:border-white/20 transition-colors">
             <h3 className="text-xl font-bold font-outfit mb-3 text-white">Discovery</h3>
             <p className="text-sm text-white/50 leading-relaxed">
@@ -50,6 +50,12 @@ export default function CosmosOverview() {
             <h3 className="text-xl font-bold font-outfit mb-3 text-white">Simulation</h3>
             <p className="text-sm text-white/50 leading-relaxed">
               Guide civilizations through cosmic evolution and filter events to shape history.
+            </p>
+          </div>
+          <div className="p-8 glass-panel rounded-3xl hover:border-white/20 transition-colors">
+            <h3 className="text-xl font-bold font-outfit mb-3 text-white">Exploration</h3>
+            <p className="text-sm text-white/50 leading-relaxed">
+              Embark on profound journeys across atmospheric 3D space environments.
             </p>
           </div>
         </div>

@@ -85,5 +85,34 @@ export const cosmosApps = [
     },
     visual: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?auto=format&fit=crop&q=80&w=1000', // Aurora style deep space
     downloadUrl: 'https://apps.apple.com/it/app/cosmogen/id6761415082?l=en-GB'
+  },
+  {
+    id: 'cosmicnomad',
+    name: 'Cosmic Nomad: Echoes',
+    role: 'The Exploration Layer',
+    tagline: 'Atmospheric Space Exploration',
+    appIcon: '/assets/icons/cosmicnomad.png',
+    summary: 'Embark on a profound journey across the cosmos in an atmospheric 3D space exploration adventure where the universe itself holds the memories of humanity\'s greatest achievements.',
+    features: [
+      {
+        title: 'Atmospheric Worlds',
+        desc: 'Explore 10 procedurally generated planets featuring distinct moods.',
+        icon: 'M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93'
+      },
+      {
+        title: 'Real-World Lore',
+        desc: 'Scan Memory Fragments to decode over 100 fascinating space facts.',
+        icon: 'M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'
+      }
+    ],
+    theme: {
+      accent: 'text-cosmo-blue',
+      border: 'border-cosmo-blue/40',
+      bgGlow: 'bg-cosmo-blue/5',
+      primaryValue: '#00D2FF',
+      secondaryValue: '#180B3A',
+    },
+    visual: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80&w=1000',
+    downloadUrl: 'https://apps.apple.com/it/app/cosmic-nomad/id6773327132?l=en-GB'
   }
 ];

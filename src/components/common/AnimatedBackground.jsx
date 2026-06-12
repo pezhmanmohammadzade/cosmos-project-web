@@ -60,8 +60,8 @@ function DeepStarfield() {
 
   return (
     <group ref={groupRef}>
-      <Stars radius={150} depth={50} count={12000} factor={2} saturation={0.5} fade speed={0.5} />
-      <Stars radius={80} depth={50} count={3000} factor={6} saturation={1} fade speed={1.2} />
+      <Stars radius={150} depth={50} count={3000} factor={2} saturation={0.5} fade speed={0.5} />
+      <Stars radius={80} depth={50} count={1000} factor={6} saturation={1} fade speed={1.2} />
     </group>
   );
 }
@@ -111,11 +111,10 @@ export default function AnimatedBackground() {
           <ambientLight intensity={0.1} />
           <LightRig />
           
-          <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.2}>
-            <DeepStarfield />
-          </Float>
+          {/* DeepStarfield should not be floated; it recalculates position for thousands of particles unnecessarily */}
+          <DeepStarfield />
           
-          <CosmicDust count={800} />
+          <CosmicDust count={300} />
           
           {isHome && (
             <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>

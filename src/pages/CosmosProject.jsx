@@ -28,8 +28,8 @@ export default function CosmosProject() {
   return (
     <div ref={containerRef} className="relative w-full min-h-screen pt-20">
       <Helmet>
-        <title>Cosmos Ecosystem | Discovery & Simulation Layers</title>
-        <meta name="description" content="Explore the three layers of the Cosmos ecosystem: Discovery, Analysis, and Simulation. Architecting astronomical experiences." />
+        <title>Cosmos Ecosystem | Four Layers</title>
+        <meta name="description" content="Explore the four layers of the Cosmos ecosystem: Discovery, Analysis, Simulation, and Exploration. Architecting astronomical experiences." />
         <meta property="og:title" content="Cosmos Project Ecosystem | Pezhman Mohammadzadeh" />
       </Helmet>
       

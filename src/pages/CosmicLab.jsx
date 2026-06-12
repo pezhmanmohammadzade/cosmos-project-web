@@ -8,6 +8,7 @@ import { LAB_MODES } from '../data/cosmicLabModes';
 
 export default function CosmicLab() {
   const [currentMode, setCurrentMode] = useState(LAB_MODES.EXPLORE);
+  const [isInteractive, setIsInteractive] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,12 +36,14 @@ export default function CosmicLab() {
 
       {/* Hero & Interactive Scene */}
       <section className="relative h-screen min-h-[800px] overflow-hidden">
-        <CosmicLabScene mode={currentMode} />
+        <CosmicLabScene mode={currentMode} isInteractive={isInteractive} />
         
         <div className="lab-content relative z-30">
           <CosmicLabHUD 
             currentMode={currentMode} 
             onModeChange={setCurrentMode} 
+            isInteractive={isInteractive}
+            onInteractiveToggle={() => setIsInteractive(!isInteractive)}
           />
         </div>
       </section>

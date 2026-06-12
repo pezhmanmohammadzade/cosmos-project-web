@@ -144,8 +144,9 @@ export default function Home() {
             >
               {/* Background Image - Hubble Ultra Deep Field (Infinite Depth) */}
               <img 
-                src="/assets/hubble_ultra_deep_field.png" 
+                src="/assets/hubble_ultra_deep_field.jpg" 
                 alt="Hubble Ultra Deep Field" 
+                fetchpriority="high"
                 className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-110 transition-transform duration-[3s] ease-out z-0 filter brightness-[1.1] contrast-[1.2] saturate-[1.1]"
                 style={{ transform: 'translateZ(-50px)' }}
               />
@@ -184,8 +185,9 @@ export default function Home() {
             >
               {/* Background Image - Clean Apple-esque Mesh Gradient */}
               <img 
-                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200" 
+                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" 
                 alt="Selected Projects" 
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-110 transition-transform duration-[3s] ease-out z-0 filter saturate-150 contrast-125 brightness-125"
                 style={{ transform: 'translateZ(-50px)' }}
               />

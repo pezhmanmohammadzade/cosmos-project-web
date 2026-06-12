@@ -199,36 +199,54 @@ export default function About() {
             <div className="w-full space-y-20 z-10">
             {[
                 {
-                  date: 'DEC 2025 - PRESENT',
-                  role: 'Founder',
-                  company: 'Cosmos Project',
+                  date: 'OCT 2025 - JUL 2026',
+                  role: 'Apple Developer Academy Participant',
+                  company: 'Federico II University of Naples',
                   points: [
-                    'Developing an integrated ecosystem of learning applications.',
-                    'Directing product vision and design-led strategic growth.',
-                    'Implementing advanced AI narrators and high-fidelity 3D engines.'
+                    'Focus on UI/UX design and human-centered product design.',
+                    'Translating user needs into intuitive interfaces within the Apple ecosystem.',
+                    'Designing digital products from concept to MVP in multidisciplinary teams.'
+                  ],
+                  isCurrent: true
+                },
+                {
+                  date: '2025',
+                  role: 'Computer Science & AI (CS50)',
+                  company: 'Harvard University',
+                  points: [
+                    'Completed CS50x (Computer Science), CS50 Python, and CS50 AI programs.',
+                    'Built a strong foundation in algorithms, machine learning, and intelligent systems.',
+                    'Applied automated testing and robust object-oriented programming patterns.'
+                  ]
+                },
+                {
+                  date: 'DEC 2025 - PRESENT',
+                  role: 'Founder & Architect',
+                  company: 'Cosmos Project Ecosystem',
+                  points: [
+                    'Developing an interconnected ecosystem of space-focused applications.',
+                    'Integrating data science and real-world NASA datasets for scientific exploration (e.g., CosmoQuest AI).',
+                    'Goal: To create digital experiences that merge art, science, and innovation into emotionally engaging and futuristic designs.'
                   ],
                   isCurrent: true
                 },
                 {
                   date: 'NOV 2024 - PRESENT',
-                  role: 'Interaction Designer',
+                  role: 'Digital Product & Interaction Designer',
                   company: 'Freelance / Specialized Projects',
                   points: [
                     'Built high-fidelity web experiences using HTML, Python, React, Three.js, and GSAP.',
-                    'Focused on immersive interaction patterns and micro-animations.',
+                    'Focused on immersive interaction patterns, AI integration, and micro-animations.'
                   ]
                 },
                 {
                   date: 'OCT 2023 - PRESENT',
                   role: "Master's degree in Design for the Built Environment",
                   company: 'Federico II University of Naples',
-                  points: ['Digital Design specialization']
-                },
-                {
-                  date: 'FEB 2012 - MAY 2017',
-                  role: 'Bachelor of Architecture',
-                  company: 'Islamic Azad University of Kermanshah',
-                  points: []
+                  points: [
+                    'Digital Design specialization.',
+                    'Combining architectural thinking with emerging technologies and UI/UX design.'
+                  ]
                 }
               ].map((milestone, idx) => (
               <div key={idx} className={cn("grid grid-cols-1 md:grid-cols-4 gap-8 group/milestone", milestone.isCurrent && "relative")}>
