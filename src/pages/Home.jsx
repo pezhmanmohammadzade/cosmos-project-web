@@ -177,7 +177,7 @@ export default function Home() {
             </PortalCard>
           </div>
 
-          {/* Selected Projects Portal (Apple Vibe) */}
+          {/* Other Projects Portal (Apple Vibe) */}
           <div className="portal-wrapper rounded-[3rem] h-full aspect-[4/5] md:aspect-square">
             <PortalCard 
               to="/selected-projects" 
@@ -186,7 +186,7 @@ export default function Home() {
               {/* Background Image - Clean Apple-esque Mesh Gradient */}
               <img 
                 src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" 
-                alt="Selected Projects" 
+                alt="Other Projects" 
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-110 transition-transform duration-[3s] ease-out z-0 filter saturate-150 contrast-125 brightness-125"
                 style={{ transform: 'translateZ(-50px)' }}
@@ -202,7 +202,7 @@ export default function Home() {
                   Premium Tools
                 </span>
                 <h2 className="text-6xl md:text-7xl lg:text-8xl font-outfit font-bold text-white tracking-tighter drop-shadow-[0_10px_35px_rgba(0,0,0,0.8)] leading-[0.9]">
-                  Selected <br/> Projects
+                  Other <br/> Projects
                 </h2>
                 <p className="text-xl text-white/90 max-w-md group-hover:text-white transition-colors duration-500 font-medium drop-shadow-2xl">
                   High-performance applications designed with focus, precision, and human-centric experience at their core.

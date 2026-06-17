@@ -47,7 +47,7 @@ export default function SelectedProjects() {
             Explorations beyond the Cosmos ecosystem
           </span>
           <h2 className="header-element text-4xl md:text-6xl font-outfit font-bold mb-8 text-white/90">
-            Selected Projects
+            Other Projects
           </h2>
           <p className="header-element text-lg text-white/40 font-light max-w-2xl mx-auto">
             A collection of independent high-end applications exploring focus, thinking, and human performance.

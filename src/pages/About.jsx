@@ -200,7 +200,7 @@ export default function About() {
             {[
                 {
                   date: 'OCT 2025 - JUL 2026',
-                  role: 'Apple Developer Academy Participant',
+                  role: 'Federico II University, Apple Developer Academy Alumni',
                   company: 'Federico II University of Naples',
                   points: [
                     'Focus on UI/UX design and human-centered product design.',

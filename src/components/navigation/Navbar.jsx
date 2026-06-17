@@ -11,7 +11,7 @@ function cn(...inputs) {
 const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/cosmos-project', label: 'Cosmos Project' },
-  { path: '/selected-projects', label: 'Selected Projects' },
+  { path: '/selected-projects', label: 'Other Projects' },
   { path: '/cosmic-lab', label: 'Cosmic Lab' },
   { path: '/about', label: 'About' },
   { path: '/contact', label: 'Contact' }

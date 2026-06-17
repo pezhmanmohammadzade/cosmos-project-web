@@ -29,9 +29,9 @@ export default function SelectedProjects() {
   return (
     <div ref={containerRef} className="relative w-full min-h-screen pt-40 pb-40 px-6 lg:px-24 overflow-hidden">
       <Helmet>
-        <title>Selected Projects | Peak Human Performance</title>
+        <title>Other Projects | Peak Human Performance</title>
         <meta name="description" content="Explore a collection of high-end applications focusing on strategic thinking, focus, and human performance engineering." />
-        <meta property="og:title" content="Selected Projects Showcase | Pezhman Mohammadzadeh" />
+        <meta property="og:title" content="Other Projects Showcase | Pezhman Mohammadzadeh" />
       </Helmet>
       
       {/* 3D SPIRAL GALAXY BACKGROUND (FINAL VISIBILITY FIX) */}
@@ -59,7 +59,7 @@ export default function SelectedProjects() {
           Independent Explorations
         </span>
         <h1 className="page-header-element text-5xl md:text-8xl font-outfit font-bold mb-8 text-white">
-          Selected <span className="text-cosmo-cyan">Projects</span>
+          Other <span className="text-cosmo-cyan">Projects</span>
         </h1>
         <p className="page-header-element text-xl text-white/40 font-light max-w-2xl mx-auto leading-relaxed italic border-x border-white/5 px-12">
           "A collection of high-end applications exploring focus, strategic thinking, and human performance outside of the Cosmos ecosystem."
