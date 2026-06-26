@@ -87,6 +87,15 @@ export default function About() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             {
+              id: 'apple_academy',
+              title: 'Apple Developer Academy Alumni',
+              org: 'Federico II University of Naples',
+              year: '2026',
+              color: 'bg-white',
+              desc: 'Certificate of Attendance to Apple Developer Academy 2025/2026, focusing on UI/UX and human-centered product design.',
+              url: '#'
+            },
+            {
               id: 'CS50x',
               title: 'CS50x: Computer Science',
               org: 'Harvard University',
@@ -112,6 +121,33 @@ export default function About() {
               color: 'bg-[#A51C30]',
               desc: 'Exploration of search algorithms, machine learning, and neural networks for intelligent systems.',
               url: 'https://cs50.harvard.edu/certificates/f80cc9c2-0797-4a69-b57e-8a4e72dbf982'
+            },
+            {
+              id: 'sbam_workshop',
+              title: 'SBAM Design Workshop',
+              org: 'Suor Orsola Benincasa University of Naples',
+              year: '2024',
+              color: 'bg-cosmo-purple',
+              desc: 'Participated in the "Sustainable Behavior Application for Mobile devices" design workshop, utilizing The SBAM Card Deck as a design tool for sustainability.',
+              url: '#'
+            },
+            {
+              id: 'aurora_food_systems',
+              title: 'Re-thinking Food Systems',
+              org: 'University of Naples Federico II & AURORA',
+              year: '2024',
+              color: 'bg-cosmo-blue',
+              desc: '44-hour interdisciplinary workshop covering sustainable food supply chains, design for social innovation, and food waste management in the Anthropocene.',
+              url: '#'
+            },
+            {
+              id: 'seizmic_awards',
+              title: 'Top 10 Nominee: seizmic AWARDS',
+              org: 'AURORA & seizmic',
+              year: '2024',
+              color: 'bg-[#F22973]',
+              desc: 'Recognized as a Top 10 nominee for the project "Mill To Meal", distinguished for its exceptional quality and outstanding contribution to the seizmic community.',
+              url: '#'
             }
           ].map((cert) => (
             <div key={cert.id} className="about-anim relative p-10 rounded-[2.5rem] bg-white/[0.04] border border-white/10 backdrop-blur-xl overflow-hidden hover:bg-white/[0.06] transition-all duration-500 group flex flex-col min-h-[450px]">
